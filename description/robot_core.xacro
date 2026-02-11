@@ -5,6 +5,7 @@
     <material name="white"><color rgba="1 1 1 1"/></material>
     <material name="black"><color rgba="0 0 0 1"/></material>
     <material name="grey"><color rgba="0.5 0.5 0.5 1"/></material>
+    <material name="red"><color rgba="1 0 0 1"/></material>
 
     <!-- ================= PROPERTIES ================= -->
     <xacro:property name="box_length" value="0.394"/>
@@ -110,7 +111,7 @@
         </visual>
         <collision>
             <geometry>
-                <cylinder radius="0.04" length="0.035"/>
+                <sphere radius="0.04" />
             </geometry>
         </collision>
         <inertial>
@@ -179,7 +180,7 @@
         </visual>
         <collision>
             <geometry>
-                <cylinder radius="0.04" length="0.035"/>
+                <sphere radius="0.04" />
             </geometry>
         </collision>
         <inertial>
@@ -229,38 +230,31 @@
 
 
     <gazebo>
-  <plugin
-    filename="gz-sim-diff-drive-system"
-    name="gz::sim::systems::DiffDrive">
+        <plugin name="gz::sim::systems::DiffDrive" filename="gz-sim-diff-drive-system">
 
-    <!-- Joints -->
-    <left_joint>left_wheel_joint</left_joint>
-    <right_joint>right_wheel_joint</right_joint>
+            <!-- Wheel Information -->
+            <left_joint>left_wheel_joint</left_joint>
+            <right_joint>right_wheel_joint</right_joint>
+            <wheel_separation>0.35</wheel_separation>
+            <wheel_radius>0.05</wheel_radius>
 
-    <!-- Geometry -->
-    <wheel_separation>0.164</wheel_separation>
-    <wheel_radius>0.04</wheel_radius>
+            <!-- Input -->
+            <topic>cmd_vel</topic>
 
-    <!-- Limits -->
-    <max_linear_acceleration>10.0</max_linear_acceleration>
-    <odom_publish_frequency>100.0</odom_publish_frequency>
+            <!-- Output -->
+            <frame_id>odom</frame_id>
+            <child_frame_id>base_link</child_frame_id>
+            <odom_topic>odom</odom_topic>            
+            <tf_topic>tf</tf_topic>
 
-    <!-- Frames -->
-    <odom_frame>odom</odom_frame>
-    <base_frame>base_link</base_frame>
+        </plugin>
 
-    <!-- Topics -->
-    <topic>cmd_vel</topic>
-    <odom_topic>odom</odom_topic>
-    <publish_odom>true</publish_odom>
-    <publish_odom_tf>true</publish_odom_tf>
-    <publish_wheel_tf>true</publish_wheel_tf>
-  </plugin>
-    <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher">
-                        <topic>/model/my_bot/joint_states</topic>
+
+        <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher">
+            <topic>joint_states</topic>
             <joint_name>right_wheel_joint</joint_name>
             <joint_name>left_wheel_joint</joint_name>
-    </plugin>
-</gazebo>
+        </plugin>
+    </gazebo>
 
 </robot>

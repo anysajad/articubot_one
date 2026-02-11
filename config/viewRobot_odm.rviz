@@ -56,17 +56,23 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: true
-        my_bot/base_link:
+        base_link:
           Value: true
-        my_bot/caster_wheel_link:
+        caster_wheel_link:
           Value: true
-        my_bot/chassis_link:
+        chassis_link:
           Value: true
-        my_bot/left_motor_link:
+        laser_frame:
           Value: true
-        my_bot/odom:
+        left_motor_link:
           Value: true
-        my_bot/right_motor_link:
+        left_wheel_link:
+          Value: true
+        odom:
+          Value: true
+        right_motor_link:
+          Value: true
+        right_wheel_link:
           Value: true
       Marker Scale: 1
       Name: TF
@@ -74,16 +80,19 @@ Visualization Manager:
       Show Axes: true
       Show Names: true
       Tree:
-        my_bot/odom:
-          my_bot/base_link:
-            my_bot/caster_wheel_link:
+        odom:
+          base_link:
+            caster_wheel_link:
               {}
-            my_bot/chassis_link:
-              {}
-            my_bot/left_motor_link:
-              {}
-            my_bot/right_motor_link:
-              {}
+            chassis_link:
+              laser_frame:
+                {}
+            left_motor_link:
+              left_wheel_link:
+                {}
+            right_motor_link:
+              right_wheel_link:
+                {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -118,6 +127,11 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        laser_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         left_motor_link:
           Alpha: 1
           Show Axes: false
@@ -142,14 +156,14 @@ Visualization Manager:
         Inertia: false
         Mass: false
       Name: RobotModel
-      TF Prefix: my_bot
+      TF Prefix: ""
       Update Interval: 0
       Value: true
       Visual Enabled: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: my_bot/odom
+    Fixed Frame: odom
     Frame Rate: 30
   Name: root
   Tools:
@@ -192,7 +206,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 1.5042463541030884
+      Distance: 1.6847559213638306
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -207,10 +221,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.4297967553138733
+      Pitch: 0.44979673624038696
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 5.649555683135986
+      Yaw: 0.9613686800003052
     Saved: ~
 Window Geometry:
   Displays:
