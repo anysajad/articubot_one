@@ -1,0 +1,202 @@
+<?xml version="1.0" ?>
+<sdf version="1.8">
+  <world name="lidar_big_world">
+
+    <!-- Required Systems -->
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics"/>
+    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors"/>
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands"/>
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"/>
+
+    <!-- Sun -->
+    <light name="sun" type="directional">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 20 0 0 0</pose>
+      <diffuse>1 1 1 1</diffuse>
+      <direction>-0.3 0.2 -1</direction>
+    </light>
+
+    <!-- Ground -->
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>200 200</size>
+            </plane>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>200 200</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.6 0.6 0.6 1</ambient>
+            <diffuse>0.6 0.6 0.6 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ================== BOUNDARY WALLS ================== -->
+
+    <!-- North Wall -->
+    <model name="wall_north">
+      <static>true</static>
+      <pose>0 25 1 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>50 1 2</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>50 1 2</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- South Wall -->
+    <model name="wall_south">
+      <static>true</static>
+      <pose>0 -25 1 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>50 1 2</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>50 1 2</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- East Wall -->
+    <model name="wall_east">
+      <static>true</static>
+      <pose>25 0 1 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>1 50 2</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>1 50 2</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- West Wall -->
+    <model name="wall_west">
+      <static>true</static>
+      <pose>-25 0 1 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>1 50 2</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>1 50 2</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ================== RANDOM BOX OBSTACLES ================== -->
+
+    <model name="box1">
+      <static>true</static>
+      <pose>5 5 0.75 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>1.5 1.5 1.5</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>1.5 1.5 1.5</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+
+    <model name="box2">
+      <static>true</static>
+      <pose>-6 3 1 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>2 1 2</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>2 1 2</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+
+    <model name="box3">
+      <static>true</static>
+      <pose>8 -7 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>1 2 1</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>1 2 1</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ================== CYLINDERS ================== -->
+
+    <model name="cylinder1">
+      <static>true</static>
+      <pose>-4 -6 1 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><cylinder><radius>0.7</radius><length>2</length></cylinder></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><cylinder><radius>0.7</radius><length>2</length></cylinder></geometry>
+        </visual>
+      </link>
+    </model>
+
+    <model name="cylinder2">
+      <static>true</static>
+      <pose>10 0 1 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><cylinder><radius>1</radius><length>2</length></cylinder></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><cylinder><radius>1</radius><length>2</length></cylinder></geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ================== SIMPLE MAZE SECTION ================== -->
+
+    <model name="maze_wall1">
+      <static>true</static>
+      <pose>-10 10 1 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>8 0.5 2</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>8 0.5 2</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+
+    <model name="maze_wall2">
+      <static>true</static>
+      <pose>-6 14 1 0 0 1.57</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>8 0.5 2</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>8 0.5 2</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+
+  </world>
+</sdf>

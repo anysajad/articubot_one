@@ -1,11 +1,10 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro"  name="robot">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
 
-    
     <joint name="laser_joint" type="fixed">
-        <parent link="chassis_link"/>
+        <parent link="base_link"/>
         <child link="laser_frame"/>
-        <origin xyz="0.3 0 0.280" rpy="0 0 0"/>
+        <origin xyz="0.18 0 0.285" rpy="0 0 0"/>
     </joint>
 
     <link name="laser_frame">
@@ -26,9 +25,8 @@
             <inertia ixx="0.000042" iyy="0.000042" izz="0.000125"
                      ixy="0" ixz="0" iyz="0"/>
         </inertial>
+  
     </link>
-
-
     <gazebo reference="laser_frame">
         <sensor name="laser" type="gpu_lidar">
             <pose> 0 0 0 0 0 0 </pose>
