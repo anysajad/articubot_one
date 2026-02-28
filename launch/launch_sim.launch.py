@@ -30,7 +30,11 @@ def generate_launch_description():
 
     world_arg = DeclareLaunchArgument(
         'world',
-        default_value="empty.sdf",
+        default_value=os.path.join(
+            get_package_share_directory(package_name),
+            'worlds',
+            'obstacle.world'
+        ),
         description='World to load'
         )
 
@@ -67,24 +71,6 @@ def generate_launch_description():
         arguments=["/camera/image_raw"]
     )
 
-    diff_drive_spawner = Node(
-        package="controller_manager",
-        executable="spawner",
-        arguments=[
-            "diff_cont",
-            '--controller-ros-args',
-            '-r /diff_cont/cmd_vel:=/cmd_vel'
-        ],
-    )
-
-    joint_broad_spawner = Node(
-        package="controller_manager",
-        executable="spawner",
-        arguments=["joint_broad"],
-    )
-
-
-
     # Launch them all!
     return LaunchDescription([
         rsp,
@@ -92,7 +78,4 @@ def generate_launch_description():
         gazebo,
         spawn_entity,
         ros_gz_bridge,
-        ros_gz_image_bridge,
-        diff_drive_spawner,
-        joint_broad_spawner,
     ])
