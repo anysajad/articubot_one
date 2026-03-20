@@ -20,10 +20,12 @@ def generate_launch_description():
 
     package_name='my_bot' #<--- CHANGE ME
 
+    use_ros2_control = LaunchConfiguration('use_ros2_control')
+
     rsp = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
                     get_package_share_directory(package_name),'launch','rsp.launch.py'
-                )]), launch_arguments={'use_sim_time': 'true'}.items()
+                )]), launch_arguments={'use_sim_time': 'true', 'use_ros2_control': use_ros2_control}.items()
     )
     
     world = LaunchConfiguration('world')
@@ -70,12 +72,33 @@ def generate_launch_description():
         executable="image_bridge",
         arguments=["/camera/image_raw"]
     )
+    
+    diff_drive_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=[
+            "diff_cont",
+            '--controller-ros-args',
+            '-r /diff_cont/cmd_vel:=/cmd_vel'
+        ],
+    )
 
+    joint_broad_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["joint_broad"],
+    )
     # Launch them all!
     return LaunchDescription([
+        DeclareLaunchArgument(
+            'use_ros2_control',
+            default_value='true',
+            description='Use ros2_control if true'),
         rsp,
         world_arg,
         gazebo,
         spawn_entity,
         ros_gz_bridge,
+        diff_drive_spawner,
+        joint_broad_spawner,
     ])

@@ -26,7 +26,6 @@
 
     <gazebo>
         <plugin name="gz_ros2_control::GazeboSimROS2ControlPlugin" filename="libgz_ros2_control-system.so">
-            <!-- Make sure to put your package name in there!! -->
             <parameters>$(find my_bot)/config/my_controllers.yaml</parameters>
         </plugin>
     </gazebo>
