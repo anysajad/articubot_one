@@ -49,157 +49,100 @@
       </link>
     </model>
 
-    <!-- Rocks (Obstacles) -->
-    <model name='rock1'>
+    <!-- Maze Walls -->
+    <model name='maze'>
       <static>true</static>
-      <pose>5 5 0 0 0 0</pose>
-      <link name='rock_link'>
-        <collision name='rock_collision'>
-          <geometry>
-            <sphere>
-              <radius>0.7</radius>
-            </sphere>
-          </geometry>
-        </collision>
-        <visual name='rock_visual'>
-          <geometry>
-            <sphere>
-              <radius>0.7</radius>
-            </sphere>
-          </geometry>
-          <material>
-            <ambient>0.4 0.3 0.2 1</ambient>
-            <diffuse>0.5 0.4 0.3 1</diffuse>
-          </material>
+      <pose>0 0 1 0 0 0</pose>
+      <link name='walls_link'>
+        
+        <!-- Outer Top Wall -->
+        <visual name='top_wall_visual'>
+          <pose>0 5 0 0 0 0</pose>
+          <geometry><box><size>20 0.5 2</size></box></geometry>
+          <material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material>
         </visual>
-      </link>
-    </model>
-    <model name='rock2'>
-      <static>true</static>
-      <pose>-6 -4 0 0 0 0</pose>
-      <link name='rock_link'>
-        <collision name='rock_collision'>
-          <geometry>
-            <sphere>
-              <radius>0.5</radius>
-            </sphere>
-          </geometry>
+        <collision name='top_wall_collision'>
+          <pose>0 5 0 0 0 0</pose>
+          <geometry><box><size>20 0.5 2</size></box></geometry>
         </collision>
-        <visual name='rock_visual'>
-          <geometry>
-            <sphere>
-              <radius>0.5</radius>
-            </sphere>
-          </geometry>
-          <material>
-            <ambient>0.3 0.2 0.2 1</ambient>
-            <diffuse>0.4 0.3 0.3 1</diffuse>
-          </material>
-        </visual>
-      </link>
-    </model>
-    <model name='rock3'>
-      <static>true</static>
-      <pose>3 -7 0 0 0 0</pose>
-      <link name='rock_link'>
-        <collision name='rock_collision'>
-          <geometry>
-            <sphere>
-              <radius>0.4</radius>
-            </sphere>
-          </geometry>
-        </collision>
-        <visual name='rock_visual'>
-          <geometry>
-            <sphere>
-              <radius>0.4</radius>
-            </sphere>
-          </geometry>
-          <material>
-            <ambient>0.3 0.3 0.2 1</ambient>
-            <diffuse>0.4 0.4 0.3 1</diffuse>
-          </material>
-        </visual>
-      </link>
-    </model>
 
-    <!-- Cones (Obstacles) -->
-    <model name='cone1'>
-      <static>true</static>
-      <pose>2 2 0 0 0 0</pose>
-      <link name='cone_link'>
-        <collision name='cone_collision'>
-          <geometry>
-            <cylinder>
-              <radius>0.3</radius>
-              <length>0.7</length>
-            </cylinder>
-          </geometry>
-        </collision>
-        <visual name='cone_visual'>
-          <geometry>
-            <cylinder>
-              <radius>0.3</radius>
-              <length>0.7</length>
-            </cylinder>
-          </geometry>
-          <material>
-            <ambient>1 0.5 0 1</ambient>
-            <diffuse>1 0.7 0.2 1</diffuse>
-          </material>
+        <!-- Outer Bottom Wall -->
+        <visual name='bottom_wall_visual'>
+          <pose>0 -5 0 0 0 0</pose>
+          <geometry><box><size>20 0.5 2</size></box></geometry>
+          <material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material>
         </visual>
-      </link>
-    </model>
-    <model name='cone2'>
-      <static>true</static>
-      <pose>-3 3 0 0 0 0</pose>
-      <link name='cone_link'>
-        <collision name='cone_collision'>
-          <geometry>
-            <cylinder>
-              <radius>0.3</radius>
-              <length>0.7</length>
-            </cylinder>
-          </geometry>
+        <collision name='bottom_wall_collision'>
+          <pose>0 -5 0 0 0 0</pose>
+          <geometry><box><size>20 0.5 2</size></box></geometry>
         </collision>
-        <visual name='cone_visual'>
-          <geometry>
-            <cylinder>
-              <radius>0.3</radius>
-              <length>0.7</length>
-            </cylinder>
-          </geometry>
-          <material>
-            <ambient>1 0.5 0 1</ambient>
-            <diffuse>1 0.7 0.2 1</diffuse>
-          </material>
+
+        <!-- Outer Left Wall -->
+        <visual name='left_wall_visual'>
+          <pose>-9.75 0 0 0 0 0</pose>
+          <geometry><box><size>0.5 10.5 2</size></box></geometry>
+          <material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material>
         </visual>
-      </link>
-    </model>
-    <model name='cone3'>
-      <static>true</static>
-      <pose>0 -4 0 0 0 0</pose>
-      <link name='cone_link'>
-        <collision name='cone_collision'>
-          <geometry>
-            <cylinder>
-              <radius>0.3</radius>
-              <length>0.7</length>
-            </cylinder>
-          </geometry>
+        <collision name='left_wall_collision'>
+          <pose>-9.75 0 0 0 0 0</pose>
+          <geometry><box><size>0.5 10.5 2</size></box></geometry>
         </collision>
-        <visual name='cone_visual'>
-          <geometry>
-            <cylinder>
-              <radius>0.3</radius>
-              <length>0.7</length>
-            </cylinder>
-          </geometry>
-          <material>
-            <ambient>1 0.5 0 1</ambient>
-            <diffuse>1 0.7 0.2 1</diffuse>
-          </material>
+
+        <!-- Outer Right Wall -->
+        <visual name='right_wall_visual'>
+          <pose>9.75 0 0 0 0 0</pose>
+          <geometry><box><size>0.5 10.5 2</size></box></geometry>
+          <material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material>
         </visual>
+        <collision name='right_wall_collision'>
+          <pose>9.75 0 0 0 0 0</pose>
+          <geometry><box><size>0.5 10.5 2</size></box></geometry>
+        </collision>
+
+        <!-- Inner Left Thick Block -->
+        <visual name='left_block_visual'>
+          <pose>-8.5 0 0 0 0 0</pose>
+          <geometry><box><size>2 3 2</size></box></geometry>
+          <material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material>
+        </visual>
+        <collision name='left_block_collision'>
+          <pose>-8.5 0 0 0 0 0</pose>
+          <geometry><box><size>2 3 2</size></box></geometry>
+        </collision>
+
+        <!-- Inner Long Horizontal Bar -->
+        <visual name='horizontal_bar_visual'>
+          <pose>-1.5 0 0 0 0 0</pose>
+          <geometry><box><size>12 1.5 2</size></box></geometry>
+          <material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material>
+        </visual>
+        <collision name='horizontal_bar_collision'>
+          <pose>-1.5 0 0 0 0 0</pose>
+          <geometry><box><size>12 1.5 2</size></box></geometry>
+        </collision>
+
+        <!-- Inner Vertical Up Bar -->
+        <visual name='up_bar_visual'>
+          <pose>3.9 2.375 0 0 0 0</pose>
+          <geometry><box><size>1.2 3.25 2</size></box></geometry>
+          <material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material>
+        </visual>
+        <collision name='up_bar_collision'>
+          <pose>3.9 2.375 0 0 0 0</pose>
+          <geometry><box><size>1.2 3.25 2</size></box></geometry>
+        </collision>
+
+        <!-- Inner Vertical Down Bar -->
+        <visual name='down_bar_visual'>
+          <pose>0.5 -2.375 0 0 0 0</pose>
+          <geometry><box><size>1.5 3.25 2</size></box></geometry>
+          <material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material>
+        </visual>
+        <collision name='down_bar_collision'>
+          <pose>0.5 -2.375 0 0 0 0</pose>
+          <geometry><box><size>1.5 3.25 2</size></box></geometry>
+        </collision>
+
       </link>
     </model>
   </world>
